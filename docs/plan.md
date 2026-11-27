@@ -42,8 +42,8 @@ The workspace exists to make the assistant loop predictable and cheap:
 
 - external Git dependency materialization must reuse vcs2l rather than duplicate
   generic clone/fetch/checkout logic;
-- vcs2l remains a shared developer utility owned by
-  `brainboxemb/tool.py-dev-env`, not a project-specific dependency;
+- the workspace uses one dedicated `cad-mcp-workspace` Conda environment for
+  both vcs2l and the MCP/runtime dependencies;
 - toolchain revisions are explicit rather than floating;
 - model selection is explicit rather than discovered by the agent;
 - the CAD worktree remains independent from external dependency state;
@@ -65,9 +65,7 @@ State:
   dependency handling are implemented on `dev`;
 - next concrete gate: configure the real CAD catalog, then run Windows vcs2l
   import + bootstrap + doctor and one real VS Code MCP environment/skill call;
-- blocker/external work: shared vcs2l availability is provided by
-  `brainboxemb/tool.py-dev-env`; the concrete Windows run has not yet been
-  completed.
+- blocker/external work: the concrete Windows run has not yet been completed.
 
 ## Open issue assignment
 
