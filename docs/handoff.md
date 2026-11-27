@@ -25,11 +25,10 @@ Repository role:
 
 - this repository is the reusable template for local Forge CAD MCP assistant
   workspaces and owns operator-side workspace/bootstrap behavior;
-- it coordinates the project Conda environment, vcs2l-materialized MCP/Forge
-  externals, the concrete CAD-library worktree and generated VS Code/Copilot
-  client configuration;
-- vcs2l/shared developer tooling remains owned by
-  brainboxemb/tool.py-dev-env; Forge API behavior remains owned by
+- it coordinates one dedicated cad-mcp-workspace Conda environment,
+  vcs2l-materialized MCP/Forge externals, the concrete CAD-library worktree and
+  generated VS Code/Copilot client configuration;
+- Forge API behavior remains owned by
   brainboxemb/lib.py.solidcraft.forge; Forge MCP behavior by
   brainboxemb/tool.cad.mcp.forge; CAD model source by the configured CAD
   repository; SolidCraft engine behavior by SolidCraft.
@@ -54,8 +53,9 @@ Start by:
 Durable working rules:
 
 - MCP and Forge external Git checkouts are declared in dependencies.repos and
-  materialized with vcs2l; do not duplicate that dependency engine in workspace
-  code;
+  materialized with vcs2l from the same cad-mcp-workspace Conda environment
+  that runs the MCP; do not duplicate that dependency engine or add a second
+  normal-use environment;
 - the exact target model owner is explicit local configuration; never add fuzzy
   model discovery or implicit target switching;
 - after initial clone an existing CAD checkout is the user's real worktree and

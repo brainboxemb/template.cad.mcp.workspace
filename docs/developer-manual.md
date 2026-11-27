@@ -25,26 +25,23 @@ The concrete workspace repository owns only environment/configuration glue. CAD
 source remains in the CAD repository. MCP and Forge source remain external
 dependencies materialized by vcs2l.
 
-## External dependency owner
+## External dependency engine
 
-This template does not own a Git dependency engine.
-
-The standard shared path is:
+The workspace uses vcs2l as its Git dependency engine. The template commits
+`dependencies.repos` and pins `vcs2l==1.1.7` in the same
+`cad-mcp-workspace` Conda environment that runs the MCP.
 
 ```text
-brainboxemb/tool.py-dev-env
-        -> brainboxemb-dev-tools
-        -> vcs2l
+cad-mcp-workspace
+        ├── vcs2l
+        └── Forge CAD MCP runtime
+
+dependencies.repos
         -> vcs import --input dependencies.repos ext
 ```
 
-The workspace template therefore commits `dependencies.repos` and uses vcs2l
-for MCP/Forge materialization. Do not add a second implementation that parses
-those pins and performs Git clone/fetch/checkout itself.
-
-The project-specific `cad-mcp-workspace` Conda environment deliberately does
-not install vcs2l. Shared CLI utilities remain in
-`brainboxemb-dev-tools`.
+Do not add a second implementation that parses those pins and performs Git
+clone/fetch/checkout itself.
 
 ## Create workspace.cad.mcp.models
 
@@ -66,10 +63,7 @@ repositories:
 The MCP and Forge external pins are not in `workspace.yml`; they are owned by
 `dependencies.repos`.
 
-4. Ensure the shared vcs2l environment exists. Its owner is
-   `brainboxemb/tool.py-dev-env`.
-
-5. Create local configuration:
+4. Create local configuration:
 
 ```powershell
 Copy-Item workspace.local.example.yml workspace.local.yml
@@ -87,17 +81,17 @@ solidcraft:
   cli: C:\\path\\to\\solidcraft-cli.exe
 ```
 
-6. Run:
+5. Run:
 
 ```powershell
 .\scripts\bootstrap.ps1
 .\scripts\doctor.ps1
 ```
 
-7. Open `.generated/forge-cad.code-workspace`.
-8. Configure the VS Code Copilot harness from
+6. Open `.generated/forge-cad.code-workspace`.
+7. Configure the VS Code Copilot harness from
    `.generated/mcp-config.json`.
-9. Perform an actual MCP `environment` call before model work.
+8. Perform an actual MCP `environment` call before model work.
 
 ## Checkout classes
 
@@ -157,13 +151,12 @@ read-only exact dependency access.
 
 `scripts/bootstrap.ps1`:
 
-1. invokes `scripts/import-dependencies.ps1`;
-2. that script runs vcs2l from the current shell or the shared
-   `brainboxemb-dev-tools` Conda environment;
-3. vcs2l materializes `dependencies.repos` under `ext/`;
-4. the script creates/updates the project Conda environment;
-5. the Python workspace manager clones the CAD repository only if absent,
-   installs MCP/SCPF from the external checkouts and generates client files.
+1. creates or updates the single `cad-mcp-workspace` Conda environment;
+2. invokes `scripts/import-dependencies.ps1`;
+3. that script runs vcs2l through `cad-mcp-workspace` and materializes
+   `dependencies.repos` under `ext/`;
+4. the Python workspace manager clones the CAD repository only if absent,
+   installs MCP/SCPF in the same environment and generates client files.
 
 No repository-management MCP tool is added.
 

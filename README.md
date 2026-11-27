@@ -34,9 +34,10 @@ workspace.cad.mcp.models/
     └── state.json
 ```
 
-vcs2l is supplied by the shared `brainboxemb-dev-tools` Conda environment
-owned by `brainboxemb/tool.py-dev-env`. Project-specific Python packages stay
-in this workspace's own Conda environment.
+`cad-mcp-workspace` is the single Conda environment for this workspace. It
+contains vcs2l, the MCP runtime and the project-specific Python dependencies.
+Bootstrap creates or updates it once and all workspace commands run through that
+same environment.
 
 Start with [docs/developer-manual.md](docs/developer-manual.md) when creating a
 new concrete workspace. Daily operation is in [docs/manual.md](docs/manual.md).

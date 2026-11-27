@@ -9,8 +9,7 @@ It does not own:
 
 - Forge Python API behavior: `brainboxemb/lib.py.solidcraft.forge`;
 - Forge CAD MCP behavior: `brainboxemb/tool.cad.mcp.forge`;
-- vcs2l or the shared developer-tools environment:
-  `brainboxemb/tool.py-dev-env`;
+- vcs2l upstream behavior;
 - CAD model source: the concrete CAD-library repository configured by a
   workspace created from this template;
 - SolidCraft engine behavior.
@@ -68,10 +67,9 @@ ignored `.repos/cad/`. Generated client files stay below ignored
 
 ## Bootstrap behavior
 
-Bootstrap must use the shared vcs2l installation from the current shell or the
-`brainboxemb-dev-tools` Conda environment owned by
-`brainboxemb/tool.py-dev-env`. Project-specific Python dependencies belong in
-this workspace's own Conda environment.
+Bootstrap uses one dedicated `cad-mcp-workspace` Conda environment. That
+environment contains vcs2l plus the MCP/runtime dependencies. Do not introduce a
+second environment or require environment switching for normal workspace use.
 
 Do not expose Git clone/update behavior as an MCP model-work tool. Repository
 management is an operator/workspace responsibility.

@@ -12,8 +12,8 @@ it does not own Forge, MCP, vcs2l, CAD model or SolidCraft product behavior.
 
 - permanent source lanes are `main` and `dev`;
 - normal source integration uses the repository-local `/merge` policy;
-- the currently accepted stable template still has the initial custom
-  MCP/Forge checkout implementation; issue #9 is replacing that with vcs2l;
+- MCP and Forge are exact external revisions in `dependencies.repos`,
+  materialized with vcs2l below `ext/`;
 - the current compatibility baseline is Forge CAD MCP 0.0.1 with Forge/SCPF
   0.19.0 and SolidCraft 0.49.0;
 - one exact `models/.../<owner>` target is selected locally;
@@ -42,8 +42,8 @@ The workspace exists to make the assistant loop predictable and cheap:
 
 - external Git dependency materialization must reuse vcs2l rather than duplicate
   generic clone/fetch/checkout logic;
-- vcs2l remains a shared developer utility owned by
-  `brainboxemb/tool.py-dev-env`, not a project-specific dependency;
+- the workspace uses one dedicated `cad-mcp-workspace` Conda environment for
+  both vcs2l and the MCP/runtime dependencies;
 - toolchain revisions are explicit rather than floating;
 - model selection is explicit rather than discovered by the agent;
 - the CAD worktree remains independent from external dependency state;
@@ -61,13 +61,12 @@ State:
 
 - owner/lane: template `dev` plus concrete
   `workspace.cad.mcp.models` consumer;
-- current status: template bootstrap, CI/governance and vcs2l external
-  dependency handling are implemented on `dev`;
+- current status: template bootstrap, CI/governance, vcs2l external dependency
+  handling and the single `cad-mcp-workspace` Conda model are implemented and
+  green on permanent `dev`;
 - next concrete gate: configure the real CAD catalog, then run Windows vcs2l
   import + bootstrap + doctor and one real VS Code MCP environment/skill call;
-- blocker/external work: shared vcs2l availability is provided by
-  `brainboxemb/tool.py-dev-env`; the concrete Windows run has not yet been
-  completed.
+- blocker/external work: the concrete Windows run has not yet been completed.
 
 ## Open issue assignment
 
@@ -77,6 +76,9 @@ State:
 
 ## Recently completed
 
+- #13 simplified bootstrap/runtime to one dedicated `cad-mcp-workspace` Conda
+  environment containing both vcs2l and the Forge MCP/runtime dependencies; no
+  normal environment switching is required.
 - #9 replaced duplicated MCP/Forge Git checkout logic with the existing vcs2l
   dependency engine: exact revisions now live only in `dependencies.repos`
   and materialize below `ext/`; the active CAD worktree remains separate.
@@ -91,7 +93,7 @@ State:
 ## Next release/checkpoint
 
 The next acceptance checkpoint is a real
-`workspace.cad.mcp.models` consumer on Windows after #9:
+`workspace.cad.mcp.models` consumer on Windows:
 
 1. materialize MCP/Forge with vcs2l from `dependencies.repos`;
 2. configure the active CAD catalog;
