@@ -23,9 +23,11 @@ Before changing the template:
 3. read `docs/manual.md` when changing user-visible workflow;
 4. keep `docs/plan.md` and `docs/handoff.md` structurally aligned with
    `brainboxemb/meta.cad.solidcraft/templates/docs/`;
-5. create a short-lived branch from `dev`;
-6. keep one logical change per issue/branch/PR;
-7. run the workspace unit tests.
+5. create a short-lived branch from `dev` for normal source/docs work;
+6. for stable control-doc-only work limited to `docs/plan.md` and/or
+   `docs/handoff.md`, create the short-lived branch from `main` instead;
+7. keep one logical change per issue/branch/PR;
+8. run the workspace unit tests.
 
 ## Branch model
 
@@ -33,6 +35,8 @@ Permanent branches are only `main` and `dev`.
 
 - short-lived branch -> `dev`: squash;
 - `dev` -> `main`: merge commit;
+- stable control-doc-only branch -> `main`: squash, only when the complete PR
+  changes `docs/plan.md` and/or `docs/handoff.md`;
 - `main` -> `dev`: merge commit only for stable-only content not already on
   dev.
 
