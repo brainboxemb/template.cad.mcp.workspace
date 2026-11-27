@@ -77,13 +77,17 @@ State:
 
 | Issue | Lane/owner | Status | Next action |
 | --- | --- | --- | --- |
-| #62 | template `dev` | now | Replace full-history MCP/Forge externals with shallow exact-tag checkouts |
+| #65 | template `dev` | now | Generate project-local Codex MCP config for standalone workbenches |
+| #62 | template `dev` | complete | Shallow exact-tag MCP/Forge externals published and proven on Windows |
 | #59 | template `dev` | complete | MCP v0.0.4 / SolidCraft 0.50.0 baseline published to stable main |
 | #53 | template `dev` | later | Keep no-target/workbench bootstrap independent from the CAD catalog checkout |
 | #1 | concrete workspace acceptance | next | Run the 60 × 20 × 4 mm / Ø8 live workbench demo after the MCP/template update |
 
 ## Recently completed
 
+- #62 replaced full-history MCP/Forge externals with shallow exact-tag
+  checkouts; the concrete Windows Forge external dropped from about 192 MB to
+  about 8 MB.
 - #50 added local workbench `project.yml`, adopted MCP `v0.0.3` live
   SolidCraft control and documented the 60 × 20 × 4 mm / Ø8 acceptance demo.
 - #47 added the lightweight standalone workbench target using MCP
