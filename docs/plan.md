@@ -72,7 +72,8 @@ State:
 
 | Issue | Lane/owner | Status | Next action |
 | --- | --- | --- | --- |
-| #1 | concrete workspace acceptance | now | Exercise `workspace.cad.mcp.models` on Windows with vcs2l, bootstrap, doctor and a real MCP call |
+| #28 | template `dev` | now | Restrict the first CAD clone to the configured branch with lazy historical blobs, then resume Windows acceptance |
+| #1 | concrete workspace acceptance | after #28 | Exercise `workspace.cad.mcp.models` on Windows with vcs2l, bootstrap, doctor and a real MCP call |
 
 ## Recently completed
 
