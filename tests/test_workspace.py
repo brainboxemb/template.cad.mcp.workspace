@@ -112,3 +112,17 @@ def test_template_requires_concrete_cad_url(tmp_path):
     data["repositories"]["cad"]["url"] = None
     with pytest.raises(workspace.WorkspaceError, match="repositories.cad.url"):
         workspace.ensure_cad(data, tmp_path / "cad")
+
+
+def test_environment_contains_vcs2l():
+    data = yaml.safe_load(
+        (Path(__file__).resolve().parents[1] / "environment.yml").read_text(
+            encoding="utf-8"
+        )
+    )
+    pip = next(
+        item["pip"]
+        for item in data["dependencies"]
+        if isinstance(item, dict) and "pip" in item
+    )
+    assert "vcs2l==1.1.7" in pip
