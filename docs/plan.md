@@ -12,10 +12,10 @@ it does not own Forge, MCP, vcs2l, CAD model or SolidCraft product behavior.
 
 - permanent source lanes are `main` and `dev`;
 - normal source integration uses the repository-local `/merge` policy;
-- MCP and Forge are exact external revisions in `dependencies.repos`,
+- MCP and Forge are exact immutable release tags in `dependencies.repos`,
   materialized with vcs2l below `ext/`;
-- the current compatibility baseline is Forge CAD MCP 0.0.1 with Forge/SCPF
-  0.19.0 and SolidCraft 0.49.0;
+- the current compatibility baseline is Forge CAD MCP 0.0.2 with Forge/SCPF
+  0.25.0 and SolidCraft 0.49.0;
 - one exact `models/.../<owner>` target is selected locally;
 - an existing CAD checkout is validated but never reset, cleaned, pulled or
   branch-switched by workspace maintenance;
@@ -44,7 +44,7 @@ The workspace exists to make the assistant loop predictable and cheap:
   generic clone/fetch/checkout logic;
 - the workspace uses one dedicated `cad-mcp-workspace` Conda environment for
   both vcs2l and the MCP/runtime dependencies;
-- toolchain revisions are explicit rather than floating;
+- toolchain release tags are explicit rather than floating;
 - model selection is explicit rather than discovered by the agent;
 - the CAD worktree remains independent from external dependency state;
 - the normal editor context should stay narrow enough that the assistant uses
