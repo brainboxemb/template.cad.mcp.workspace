@@ -33,6 +33,13 @@ large blobs from unrelated refs out of the initial workspace download. Once the
 checkout exists, workspace maintenance only validates its origin and never
 changes its branch or worktree state.
 
+MCP and Forge are different: they are disposable vcs2l-managed externals below
+`ext/`. Bootstrap and update validate them against `dependencies.repos`.
+When a committed release tag changes, the workspace rematerializes the clean
+external set through vcs2l. It must never require the operator to manually
+delete `ext/`, and it must refuse to discard local external changes or an
+unexpected repository origin.
+
 After that, stop using this document for normal setup and follow:
 
 1. docs/manual/01-installation.md
