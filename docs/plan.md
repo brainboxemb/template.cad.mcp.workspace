@@ -14,9 +14,9 @@ it does not own Forge, MCP, vcs2l, CAD model or SolidCraft product behavior.
 - normal source integration uses the repository-local `/merge` policy;
 - MCP and Forge are exact immutable release tags in `dependencies.repos`,
   materialized with vcs2l below `ext/`;
-- the current released compatibility baseline is Forge CAD MCP 0.0.3 with
-  Forge/SCPF 0.25.0 and SolidCraft 0.49.0, including authenticated live
-  SolidCraft workbench control;
+- the current released compatibility baseline is Forge CAD MCP 0.0.4 with
+  Forge/SCPF 0.25.0 and SolidCraft 0.50.0 / CAD runtime v0.3.8, including
+  authenticated live SolidCraft workbench control;
 - the active target is selected locally and is either one exact
   `models/.../<owner>` catalog owner or one ignored standalone workbench;
 - an existing CAD checkout is validated but never reset, cleaned, pulled or
@@ -66,7 +66,7 @@ State:
 - current status: template bootstrap, CI/governance, vcs2l external dependency
   handling and the single `cad-mcp-workspace` Conda model are implemented and
   green on permanent `dev`;
-- next concrete gate: update the concrete workspace to MCP v0.0.3, create a
+- next concrete gate: update the concrete workspace to MCP v0.0.4, create a
   local standalone workbench and run the documented 60 × 20 × 4 mm / Ø8 live
   SolidCraft demo before involving the CAD catalog;
 - blocker/external work: the concrete Windows run has not yet been completed.
@@ -75,7 +75,8 @@ State:
 
 | Issue | Lane/owner | Status | Next action |
 | --- | --- | --- | --- |
-| #53 | template `dev` | now | Keep no-target/workbench bootstrap independent from the CAD catalog checkout |
+| #59 | template `dev` | now | Adopt MCP v0.0.4 / SolidCraft 0.50.0 release pins before Windows acceptance |
+| #53 | template `dev` | later | Keep no-target/workbench bootstrap independent from the CAD catalog checkout |
 | #1 | concrete workspace acceptance | next | Run the 60 × 20 × 4 mm / Ø8 live workbench demo after the MCP/template update |
 
 ## Recently completed
