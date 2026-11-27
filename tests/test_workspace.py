@@ -241,3 +241,14 @@ def test_import_reference_is_byte_identical_and_immutable(monkeypatch, tmp_path)
     changed.write_bytes(b"different-checkpoint")
     with pytest.raises(workspace.WorkspaceError, match="new checkpoint name"):
         workspace.import_reference(str(changed), "source.sc")
+
+
+def test_local_machine_config_may_exist_without_target():
+    assert not workspace.has_target({})
+    assert not workspace.has_target({"solidcraft": {"cli": "solidcraft-cli"}})
+    assert workspace.has_target(
+        {
+            "solidcraft": {"cli": "solidcraft-cli"},
+            "target": {"model": "models/basic/part"},
+        }
+    )
