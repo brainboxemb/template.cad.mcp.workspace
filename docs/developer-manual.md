@@ -27,11 +27,12 @@ repositories:
     branch: dev
 ~~~
 
-On first bootstrap the CAD repository is cloned as the configured development
-branch only, with a blobless partial clone. This keeps generated or historical
-large blobs from unrelated refs out of the initial workspace download. Once the
-checkout exists, workspace maintenance only validates its origin and never
-changes its branch or worktree state.
+A basic bootstrap or standalone workbench does not clone the CAD repository.
+The configured CAD repository is materialized only when a catalog-model target
+is used. That first catalog checkout clones only the configured development
+branch with a blobless partial clone. Once the checkout exists, workspace
+maintenance only validates its origin and never changes its branch or worktree
+state.
 
 MCP and Forge are different: they are disposable vcs2l-managed externals below
 `ext/`. Bootstrap and update validate them against `dependencies.repos`.
@@ -43,9 +44,10 @@ unexpected repository origin.
 After that, stop using this document for normal setup and follow:
 
 1. docs/manual/01-installation.md
-2. docs/manual/02-new-model.md
-3. docs/manual/03-solidcraft-to-forge.md
-4. docs/manual/04-existing-model.md
+2. docs/manual/02-local-workbench.md
+3. docs/manual/02-new-model.md
+4. docs/manual/03-solidcraft-to-forge.md
+5. docs/manual/04-existing-model.md
 
 ## Reusable behavior ownership
 
