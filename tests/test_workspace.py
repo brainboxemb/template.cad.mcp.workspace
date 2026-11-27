@@ -141,6 +141,33 @@ def test_template_requires_concrete_cad_url(tmp_path):
         workspace.ensure_cad(data, tmp_path / "cad")
 
 
+def test_pinned_mcp_is_installed_non_editable(monkeypatch, tmp_path):
+    paths = {
+        "mcp": tmp_path / "ext" / "mcp",
+        "forge": tmp_path / "ext" / "forge",
+    }
+    calls = []
+
+    monkeypatch.setattr(workspace, "require_external_toolchain", lambda paths: None)
+    monkeypatch.setattr(
+        workspace,
+        "run",
+        lambda args, **kwargs: calls.append(args) or "",
+    )
+
+    workspace.install_toolchain(paths)
+
+    assert calls[0] == [
+        workspace.sys.executable,
+        "-m",
+        "pip",
+        "install",
+        "--upgrade",
+        str(paths["mcp"]),
+    ]
+    assert "-e" not in calls[0]
+
+
 def test_environment_contains_vcs2l():
     data = yaml.safe_load(
         (Path(__file__).resolve().parents[1] / "environment.yml").read_text(
