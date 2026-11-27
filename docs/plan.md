@@ -55,7 +55,20 @@ Shared cross-repository principles live in
 
 ## Active workstreams
 
-### WS1 — first concrete workspace acceptance
+### WS1 — workflow manuals and owner/reference operations
+
+State:
+
+- owner/lane: template `dev`;
+- current status: issue #21 splits the user manual into installation, new-model,
+  SolidCraft-to-Forge and existing-model procedures and adds operator-side
+  create-model/reference-import helpers;
+- next concrete gate: pass template CI, synchronize the accepted workflow to
+  `workspace.cad.mcp.models`, then execute the three model workflows in order;
+- blocker/external work: CAD catalog #248 must ignore owner-local `build/`
+  scratch before the runtime acceptance.
+
+### WS2 — first concrete workspace acceptance
 
 State:
 
@@ -72,7 +85,8 @@ State:
 
 | Issue | Lane/owner | Status | Next action |
 | --- | --- | --- | --- |
-| #1 | concrete workspace acceptance | now | Exercise `workspace.cad.mcp.models` on Windows with vcs2l, bootstrap, doctor and a real MCP call |
+| #21 | dev / workspace workflow | now | Merge workflow manuals and operator helpers, then synchronize consumer |
+| #1 | concrete workspace acceptance | next | Exercise `workspace.cad.mcp.models` on Windows with vcs2l, bootstrap, doctor and a real MCP call |
 
 ## Recently completed
 
@@ -99,11 +113,11 @@ State:
 The next acceptance checkpoint is a real
 `workspace.cad.mcp.models` consumer on Windows:
 
-1. materialize MCP/Forge with vcs2l from `dependencies.repos`;
-2. configure the active CAD catalog;
-3. run `bootstrap.ps1` and `doctor.ps1`;
-4. open the generated VS Code workspace;
-5. complete an actual Forge MCP `environment` call and skill lookup.
+1. complete basic installation without selecting a target;
+2. create and verify one new Forge model;
+3. convert one independently authored SolidCraft .sc reference to Forge;
+4. continue one existing Forge model from Git;
+5. prove owner-local build scratch stays out of Git in all three workflows.
 
 Only after that succeeds should #1 close and the template be treated as proven
 outside repository CI.
