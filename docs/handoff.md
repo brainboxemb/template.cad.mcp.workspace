@@ -25,13 +25,14 @@ Repository role:
 
 - this repository is the reusable template for local Forge CAD MCP assistant
   workspaces and owns operator-side workspace/bootstrap behavior;
-- it coordinates the Conda environment, managed MCP/Forge toolchain checkouts,
-  the concrete CAD-library checkout and generated VS Code/Copilot client
-  configuration;
-- Forge API behavior remains owned by
-  brainboxemb/lib.py.solidcraft.forge, Forge MCP behavior by
-  brainboxemb/tool.cad.mcp.forge, CAD model source by the configured CAD
-  repository, and SolidCraft engine behavior by SolidCraft.
+- it coordinates the project Conda environment, vcs2l-materialized MCP/Forge
+  externals, the concrete CAD-library worktree and generated VS Code/Copilot
+  client configuration;
+- vcs2l/shared developer tooling remains owned by
+  brainboxemb/tool.py-dev-env; Forge API behavior remains owned by
+  brainboxemb/lib.py.solidcraft.forge; Forge MCP behavior by
+  brainboxemb/tool.cad.mcp.forge; CAD model source by the configured CAD
+  repository; SolidCraft engine behavior by SolidCraft.
 
 Use this handoff only as the entrypoint. Do not treat copied handoff text as
 fresher than GitHub or the repository plan.
@@ -52,16 +53,19 @@ Start by:
 
 Durable working rules:
 
+- MCP and Forge external Git checkouts are declared in dependencies.repos and
+  materialized with vcs2l; do not duplicate that dependency engine in workspace
+  code;
 - the exact target model owner is explicit local configuration; never add fuzzy
   model discovery or implicit target switching;
-- workspace tooling may manage the MCP/Forge toolchain fail-closed, but after
-  initial clone an existing CAD checkout is the user's real worktree and must
-  not be reset, cleaned, pulled or branch-switched by workspace maintenance;
+- after initial clone an existing CAD checkout is the user's real worktree and
+  must not be reset, cleaned, pulled or branch-switched by workspace
+  maintenance;
 - generated VS Code project context exposes the selected target owner as the
-  normal project folder rather than the complete managed MCP/Forge/CAD checkout
-  set;
-- nested managed repositories and generated client files stay below ignored
-  .repos/ and .generated/;
+  normal project folder rather than the complete external toolchain/CAD
+  checkout set;
+- external toolchain checkouts stay below ignored ext/, the active CAD worktree
+  below ignored .repos/cad/, and generated client files below .generated/;
 - permanent source branches are main and dev; all normal integrations use the
   repository-local /merge policy.
 
