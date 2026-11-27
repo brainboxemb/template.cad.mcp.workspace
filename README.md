@@ -28,7 +28,7 @@ workspace.cad.mcp.models/
 │   ├── mcp/
 │   └── forge/
 ├── .repos/
-│   └── cad/                   # active CAD worktree, ignored
+│   └── cad/                   # optional catalog worktree, ignored
 ├── .workbench/                # local standalone MCP experiments, ignored
 │   └── <name>/
 │       └── project.yml        # local Forge/SolidCraft/evidence settings
@@ -41,7 +41,8 @@ workspace.cad.mcp.models/
 `cad-mcp-workspace` is the single Conda environment for this workspace. It
 contains vcs2l, the MCP runtime and the project-specific Python dependencies.
 Bootstrap creates or updates it once and all workspace commands run through that
-same environment.
+same environment. A standalone workbench does not require the CAD catalog
+checkout; `.repos/cad` is created only for catalog-model work.
 
 Start with [docs/developer-manual.md](docs/developer-manual.md) when creating a
 new concrete workspace. Daily operation is in [docs/manual.md](docs/manual.md). For the first MCP

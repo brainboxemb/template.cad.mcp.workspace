@@ -75,11 +75,13 @@ State:
 
 | Issue | Lane/owner | Status | Next action |
 | --- | --- | --- | --- |
-| #50 | template `dev` | now | Add workbench project configuration, live SolidCraft demo procedure and adopt the next MCP release once published |
+| #53 | template `dev` | now | Keep no-target/workbench bootstrap independent from the CAD catalog checkout |
 | #1 | concrete workspace acceptance | next | Run the 60 × 20 × 4 mm / Ø8 live workbench demo after the MCP/template update |
 
 ## Recently completed
 
+- #50 added local workbench `project.yml`, adopted MCP `v0.0.3` live
+  SolidCraft control and documented the 60 × 20 × 4 mm / Ø8 acceptance demo.
 - #47 added the lightweight standalone workbench target using MCP
   `--workspace`; it creates no catalog metadata, CI file or CAD branch.
 - #41 fixed the Windows external-rematerialization hang by passing
