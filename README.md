@@ -5,8 +5,9 @@ Reusable local workspace template for a Forge CAD assistant environment.
 A repository created from this template does **not** own CAD models, Forge or
 the MCP implementation. It coordinates the active CAD worktree, materializes
 the pinned MCP/Forge external toolchain with vcs2l, creates the project Conda
-environment, generates the VS Code/Copilot MCP configuration and binds one
-exact CAD model owner as the assistant target.
+environment and generates the VS Code/Copilot MCP configuration. The active
+target can be either one exact CAD model owner or one ignored local standalone
+workbench.
 
 Typical concrete repository:
 
@@ -28,6 +29,7 @@ workspace.cad.mcp.models/
 │   └── forge/
 ├── .repos/
 │   └── cad/                   # active CAD worktree, ignored
+├── .workbench/                # local standalone MCP experiments, ignored
 └── .generated/
     ├── forge-cad.code-workspace
     ├── mcp-config.json
