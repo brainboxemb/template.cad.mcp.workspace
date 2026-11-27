@@ -72,11 +72,16 @@ State:
 
 | Issue | Lane/owner | Status | Next action |
 | --- | --- | --- | --- |
-| #28 | template `dev` | now | Restrict the first CAD clone to the configured branch with lazy historical blobs, then resume Windows acceptance |
-| #1 | concrete workspace acceptance | after #28 | Exercise `workspace.cad.mcp.models` on Windows with vcs2l, bootstrap, doctor and a real MCP call |
+| #1 | concrete workspace acceptance | now | Exercise `workspace.cad.mcp.models` on Windows with vcs2l, bootstrap, doctor and a real MCP call |
 
 ## Recently completed
 
+- #30 added `scripts/pr.ps1` for operator-side PR publication. It can push and
+  open a PR, wait for PR checks, and request integration only by posting the
+  existing `/merge` command; the repository merge policy remains authoritative.
+- #28 restricted the first CAD checkout to the configured development branch
+  with a blobless partial clone, avoiding unrelated generated/history blobs
+  during initial workspace setup.
 - #21 split the user workflow into basic installation, new-model,
   SolidCraft-to-Forge and existing-model procedures; added explicit owner
   creation, immutable native-reference import and target-optional installation.
