@@ -96,7 +96,20 @@ def test_create_workbench_uses_standalone_mcp_workspace(monkeypatch, tmp_path):
     owner = (tmp_path / ".workbench" / "mcp-test").resolve()
     assert owner.is_dir()
     assert result["workbench"] == "mcp-test"
+    assert result["project"] == "project.yml"
     assert result["source_expected"] == "scpf/model.py"
+
+    project = yaml.safe_load((owner / "project.yml").read_text(encoding="utf-8"))
+    assert project == {
+        "schema": 1,
+        "forge": {"source": "scpf/model.py"},
+        "solidcraft": {"connect": "auto"},
+        "evidence": {
+            "enabled": True,
+            "log": "build/session.jsonl",
+            "render": "build/live/model.png",
+        },
+    }
 
     local = yaml.safe_load(local_path.read_text(encoding="utf-8"))
     assert local["target"] == {"workbench": "mcp-test"}
