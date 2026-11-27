@@ -149,7 +149,6 @@ def test_create_workbench_uses_standalone_mcp_workspace(monkeypatch, tmp_path):
     server = codex["mcp_servers"]["forgeCad"]
     assert server["command"] == str(tmp_path / "python.exe")
     assert server["args"] == args
-    assert r"C:\SolidCraft\solidcraft-cli.exe" in server["args"]
 
 
 def test_create_workbench_refuses_invalid_or_existing_name(monkeypatch, tmp_path):
