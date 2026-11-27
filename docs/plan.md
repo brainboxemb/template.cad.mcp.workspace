@@ -55,6 +55,17 @@ Shared cross-repository principles live in
 
 ## Active workstreams
 
+### WS0 — procedural manuals
+
+State:
+
+- owner/lane: template `dev`;
+- current status: issue #17 rewrites the developer and daily manuals as
+  executable procedures rather than architecture/reference blocks;
+- next concrete gate: merge the documentation rewrite and synchronize the
+  shared manual to the concrete models workspace;
+- blocker/external work: none.
+
 ### WS1 — first concrete workspace acceptance
 
 State:
@@ -72,7 +83,8 @@ State:
 
 | Issue | Lane/owner | Status | Next action |
 | --- | --- | --- | --- |
-| #1 | concrete workspace acceptance | now | Exercise `workspace.cad.mcp.models` on Windows with vcs2l, bootstrap, doctor and a real MCP call |
+| #17 | dev / documentation | now | Merge procedural developer/daily manuals and synchronize the consumer |
+| #1 | concrete workspace acceptance | next | Exercise `workspace.cad.mcp.models` on Windows with vcs2l, bootstrap, doctor and a real MCP call |
 
 ## Recently completed
 
