@@ -57,7 +57,7 @@ class PolicyTests(unittest.TestCase):
     def test_stable_main_paths_normalize_and_reject_mixed_content(self):
         self.assertTrue(stable_main_paths(("./docs/plan.md",)))
         self.assertTrue(
-            stable_main_paths((r"docs\\plan.md", r"docs\\handoff.md"))
+            stable_main_paths((r"docs\plan.md", r"docs\handoff.md"))
         )
         self.assertFalse(stable_main_paths(()))
         self.assertFalse(stable_main_paths(("docs/plan.md", "src/tool.py")))
@@ -75,7 +75,10 @@ class PolicyTests(unittest.TestCase):
 
     @patch("cad_mcp_workspace_merge_policy.__main__.api")
     def test_pull_request_paths_rejects_incomplete_listing(self, api):
-        api.return_value = [{"filename": "docs/plan.md"}]
+        api.side_effect = [
+            [{"filename": "docs/plan.md"}],
+            [],
+        ]
         with self.assertRaisesRegex(
             MergePolicyError,
             "complete pull request file list",
