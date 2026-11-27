@@ -14,7 +14,7 @@ it does not own Forge, MCP, vcs2l, CAD model or SolidCraft product behavior.
 - normal source integration uses the repository-local `/merge` policy;
 - MCP and Forge are exact immutable release tags in `dependencies.repos`,
   materialized with vcs2l below `ext/`;
-- the current released compatibility baseline is Forge CAD MCP 0.0.6 with
+- the current released compatibility baseline is Forge CAD MCP 0.0.7 with
   Forge/SCPF 0.25.0 and SolidCraft 0.50.0 / CAD runtime v0.3.8, including
   authenticated live SolidCraft workbench control;
 - the active target is selected locally and is either one exact
@@ -68,7 +68,7 @@ State:
 - current status: template bootstrap, CI/governance, vcs2l external dependency
   handling and the single `cad-mcp-workspace` Conda model are implemented and
   green on permanent `dev`;
-- next concrete gate: update the concrete workspace to MCP v0.0.6, create a
+- next concrete gate: update the concrete workspace to MCP v0.0.7, create a
   local standalone workbench and run the documented 60 × 20 × 4 mm / Ø8 live
   SolidCraft demo before involving the CAD catalog;
 - blocker/external work: the concrete Windows run has not yet been completed.
@@ -77,7 +77,9 @@ State:
 
 | Issue | Lane/owner | Status | Next action |
 | --- | --- | --- | --- |
-| #77 | template `dev` | now | Route standalone Codex workbenches through the three Forge CAD MCP skills |\n| #74 | template `dev` | complete | Standalone Codex boundary policy generated locally in each workbench |
+| #79 | template `dev` | now | Adopt released MCP v0.0.7 new-model skill for Windows Codex acceptance |
+| #77 | template `dev` | complete | Standalone Codex workbench routes tasks through the three Forge CAD MCP skills |
+| #74 | template `dev` | complete | Standalone Codex boundary policy generated locally in each workbench |
 | #71 | template `dev` | complete | MCP v0.0.6 fast-knowledge patch published to stable main |
 | #68 | template `dev` | complete | MCP v0.0.5 fast-status patch published to stable main |
 | #65 | template `dev` | complete | Project-local Codex MCP config published to stable main |
@@ -88,6 +90,7 @@ State:
 
 ## Recently completed
 
+- #77 made the generated `AGENTS.md` a short task-to-skill router for `forge-modeling`, `solidcraft-control` and `solidcraft-to-forge`.
 - #74 added a generated local `AGENTS.md` boundary for standalone workbenches, preventing implicit shell/toolchain and GitHub/web fallbacks during CAD authoring.
 - #71 adopted MCP `v0.0.6`, removing per-call Git validation from Forge knowledge/reference reads and compile.
 - #65 generates project-local `.codex/config.toml` for standalone workbenches,
