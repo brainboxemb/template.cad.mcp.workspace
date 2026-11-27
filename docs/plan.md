@@ -77,7 +77,7 @@ State:
 
 | Issue | Lane/owner | Status | Next action |
 | --- | --- | --- | --- |
-| #74 | template `dev` | now | Generate standalone Codex policy that keeps Forge/SolidCraft knowledge behind MCP |
+| #77 | template `dev` | now | Route standalone Codex workbenches through the three Forge CAD MCP skills |\n| #74 | template `dev` | complete | Standalone Codex boundary policy generated locally in each workbench |
 | #71 | template `dev` | complete | MCP v0.0.6 fast-knowledge patch published to stable main |
 | #68 | template `dev` | complete | MCP v0.0.5 fast-status patch published to stable main |
 | #65 | template `dev` | complete | Project-local Codex MCP config published to stable main |
@@ -88,6 +88,7 @@ State:
 
 ## Recently completed
 
+- #74 added a generated local `AGENTS.md` boundary for standalone workbenches, preventing implicit shell/toolchain and GitHub/web fallbacks during CAD authoring.
 - #71 adopted MCP `v0.0.6`, removing per-call Git validation from Forge knowledge/reference reads and compile.
 - #65 generates project-local `.codex/config.toml` for standalone workbenches,
   so Codex IDE can discover `forgeCad` without a separate global Codex CLI.
