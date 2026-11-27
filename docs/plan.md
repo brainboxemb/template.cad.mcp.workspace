@@ -16,7 +16,8 @@ it does not own Forge, MCP, vcs2l, CAD model or SolidCraft product behavior.
   materialized with vcs2l below `ext/`;
 - the current compatibility baseline is Forge CAD MCP 0.0.2 with Forge/SCPF
   0.25.0 and SolidCraft 0.49.0;
-- one exact `models/.../<owner>` target is selected locally;
+- the active target is selected locally and is either one exact
+  `models/.../<owner>` catalog owner or one ignored standalone workbench;
 - an existing CAD checkout is validated but never reset, cleaned, pulled or
   branch-switched by workspace maintenance;
 - generated VS Code context exposes only the selected target owner as its normal
@@ -64,15 +65,17 @@ State:
 - current status: template bootstrap, CI/governance, vcs2l external dependency
   handling and the single `cad-mcp-workspace` Conda model are implemented and
   green on permanent `dev`;
-- next concrete gate: configure the real CAD catalog, then run Windows vcs2l
-  import + bootstrap + doctor and one real VS Code MCP environment/skill call;
+- next concrete gate: create a local standalone workbench, run doctor and one
+  real VS Code MCP environment/skill/authoring cycle before involving the CAD
+  catalog;
 - blocker/external work: the concrete Windows run has not yet been completed.
 
 ## Open issue assignment
 
 | Issue | Lane/owner | Status | Next action |
 | --- | --- | --- | --- |
-| #1 | concrete workspace acceptance | now | Retry the concrete Windows update, then doctor and a real MCP call |
+| #47 | template `dev` | now | Add the standalone local workbench workflow and synchronize it to the concrete workspace |
+| #1 | concrete workspace acceptance | next | Use a local workbench for doctor and the first real MCP authoring cycle |
 
 ## Recently completed
 
@@ -118,10 +121,12 @@ The next acceptance checkpoint is a real
 `workspace.cad.mcp.models` consumer on Windows:
 
 1. complete basic installation without selecting a target;
-2. create and verify one new Forge model;
-3. convert one independently authored SolidCraft .sc reference to Forge;
-4. continue one existing Forge model from Git;
-5. prove owner-local build scratch stays out of Git in all three workflows.
+2. create a local standalone workbench and prove the MCP authoring -> compile
+   -> SolidCraft replay/check cycle without a CAD branch or PR;
+3. create and verify one maintained Forge catalog model;
+4. convert one independently authored SolidCraft .sc reference to Forge;
+5. continue one existing Forge model from Git;
+6. prove local/catalog build scratch stays out of maintained Git source.
 
 Only after that succeeds should #1 close and the template be treated as proven
 outside repository CI.
