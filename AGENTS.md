@@ -20,9 +20,11 @@ Before changing the template:
 1. read `docs/plan.md`;
 2. read `docs/developer-manual.md`;
 3. read `docs/manual.md` when changing user-visible workflow;
-4. create a short-lived branch from `dev`;
-5. keep one logical change per issue/branch/PR;
-6. run the workspace unit tests.
+4. keep `docs/plan.md` and `docs/handoff.md` structurally aligned with
+   `brainboxemb/meta.cad.solidcraft/templates/docs/`;
+5. create a short-lived branch from `dev`;
+6. keep one logical change per issue/branch/PR;
+7. run the workspace unit tests.
 
 ## Branch model
 
