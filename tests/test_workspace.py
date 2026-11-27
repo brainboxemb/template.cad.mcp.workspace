@@ -1,5 +1,6 @@
 from pathlib import Path
 import json
+import tomllib
 
 import pytest
 import yaml
@@ -79,6 +80,8 @@ def test_generate_opens_only_exact_target(monkeypatch, tmp_path):
     assert "--model-root" in args
     assert "models/components/part" in args
     assert str((tmp_path / "ext" / "forge").resolve()) in args
+    assert not (owner / ".codex").exists()
+    assert state["codex_config"] is None
 
 
 def test_create_workbench_uses_standalone_mcp_workspace(monkeypatch, tmp_path):
@@ -139,6 +142,13 @@ def test_create_workbench_uses_standalone_mcp_workspace(monkeypatch, tmp_path):
     assert state["target_kind"] == "workbench"
     assert state["target"] == "workbench:mcp-test"
     assert state["cad_repository"] is None
+
+    codex_path = owner / ".codex" / "config.toml"
+    assert state["codex_config"] == str(codex_path)
+    codex = tomllib.loads(codex_path.read_text(encoding="utf-8"))
+    server = codex["mcp_servers"]["forgeCad"]
+    assert server["command"] == str(tmp_path / "python.exe")
+    assert server["args"] == args
 
 
 def test_create_workbench_refuses_invalid_or_existing_name(monkeypatch, tmp_path):
