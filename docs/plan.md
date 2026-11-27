@@ -68,25 +68,17 @@ State:
 - blocker/external work: the concrete workspace repository and local Windows
   acceptance have not yet been completed.
 
-### WS2 — shared documentation convention alignment
-
-State:
-
-- owner/lane: template `dev`;
-- current status: handoff/plan alignment is being corrected under issue #5;
-- next concrete gate: merge the meta-aligned document structure and keep future
-  status changes in this plan rather than the handoff;
-- blocker/external work: none.
-
 ## Open issue assignment
 
 | Issue | Lane/owner | Status | Next action |
 | --- | --- | --- | --- |
 | #1 | dev / concrete workspace acceptance | now | Create and exercise `workspace.cad.mcp.models` on Windows through bootstrap, doctor and a real MCP call |
-| #5 | dev / documentation | now | Merge the meta-aligned handoff and plan structure |
 
 ## Recently completed
 
+- #5 aligned `docs/handoff.md` and `docs/plan.md` with the shared structures
+  in `brainboxemb/meta.cad.solidcraft`; the handoff now contains only durable
+  session-entry guidance and current state remains in this plan.
 - Initial repository bootstrap established workspace configuration, Conda
   setup, toolchain/CAD checkout handling, target selection, generated client
   files and documentation.
