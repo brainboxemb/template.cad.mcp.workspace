@@ -85,7 +85,10 @@ Open:
 .generated/forge-cad.code-workspace
 ~~~
 
-The only project folder is the selected local workbench.
+The only project folder is the selected local workbench. The generated
+workspace also selects the same Python executable from the `cad-mcp-workspace`
+Conda environment that runs the MCP server, so editor analysis and MCP use the
+same installed Forge/SCPF package.
 
 ## 5. Start the MCP workflow
 

@@ -522,7 +522,9 @@ def generate(data: dict, local: dict) -> dict:
 
     code_workspace = {
         "folders": [{"name": binding["name"], "path": str(owner)}],
-        "settings": {},
+        "settings": {
+            "python.defaultInterpreterPath": command,
+        },
     }
     (generated / "forge-cad.code-workspace").write_text(
         json.dumps(code_workspace, indent=2) + "\n", encoding="utf-8"

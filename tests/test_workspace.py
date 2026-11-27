@@ -67,6 +67,9 @@ def test_generate_opens_only_exact_target(monkeypatch, tmp_path):
         (generated / "forge-cad.code-workspace").read_text(encoding="utf-8")
     )
     assert code["folders"] == [{"name": "part", "path": str(owner.resolve())}]
+    assert code["settings"]["python.defaultInterpreterPath"] == str(
+        tmp_path / "python.exe"
+    )
 
     mcp = json.loads(
         (generated / "mcp-config.json").read_text(encoding="utf-8")
@@ -119,6 +122,9 @@ def test_create_workbench_uses_standalone_mcp_workspace(monkeypatch, tmp_path):
         (generated / "forge-cad.code-workspace").read_text(encoding="utf-8")
     )
     assert code["folders"] == [{"name": "mcp-test", "path": str(owner)}]
+    assert code["settings"]["python.defaultInterpreterPath"] == str(
+        tmp_path / "python.exe"
+    )
 
     mcp = json.loads(
         (generated / "mcp-config.json").read_text(encoding="utf-8")
