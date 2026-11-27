@@ -55,15 +55,7 @@ Shared cross-repository principles live in
 
 ## Active workstreams
 
-### WS1 — external toolchain reconciliation
-
-Issue #35 makes bootstrap/update converge an existing workspace to the exact
-MCP/Forge releases committed in `dependencies.repos`. Existing matching
-externals stay in place; clean stale externals are rematerialized through
-vcs2l; dirty or unexpected external repositories fail safely. The CAD worktree
-remains outside this process.
-
-### WS2 — first concrete workspace acceptance
+### WS1 — first concrete workspace acceptance
 
 State:
 
@@ -80,11 +72,14 @@ State:
 
 | Issue | Lane/owner | Status | Next action |
 | --- | --- | --- | --- |
-| #35 | template `dev` | now | Integrate automatic external reconciliation, then synchronize it to the concrete workspace |
-| #1 | concrete workspace acceptance | next | Exercise `workspace.cad.mcp.models` on Windows with update/bootstrap, doctor and a real MCP call |
+| #38 | template `dev` | now | Fix generated Python metadata false-positive from the first real Windows update |
+| #1 | concrete workspace acceptance | next | Retry the concrete Windows update, then doctor and a real MCP call |
 
 ## Recently completed
 
+- #35 added automatic vcs2l external reconciliation for bootstrap/update; the
+  first real Windows run then exposed #38 because generated Python package
+  metadata was being mistaken for user edits.
 - #30 added `scripts/pr.ps1` for operator-side PR publication. It can push and
   open a PR, wait for PR checks, and request integration only by posting the
   existing `/merge` command; the repository merge policy remains authoritative.
