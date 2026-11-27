@@ -1,0 +1,1 @@
+# template.cad.mcp.workspace
