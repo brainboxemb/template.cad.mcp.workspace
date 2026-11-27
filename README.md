@@ -30,6 +30,8 @@ workspace.cad.mcp.models/
 ├── .repos/
 │   └── cad/                   # active CAD worktree, ignored
 ├── .workbench/                # local standalone MCP experiments, ignored
+│   └── <name>/
+│       └── project.yml        # local Forge/SolidCraft/evidence settings
 └── .generated/
     ├── forge-cad.code-workspace
     ├── mcp-config.json
@@ -42,7 +44,8 @@ Bootstrap creates or updates it once and all workspace commands run through that
 same environment.
 
 Start with [docs/developer-manual.md](docs/developer-manual.md) when creating a
-new concrete workspace. Daily operation is in [docs/manual.md](docs/manual.md).
+new concrete workspace. Daily operation is in [docs/manual.md](docs/manual.md). For the first MCP
+acceptance, start with a local workbench rather than a CAD catalog branch.
 
 The template uses `main` for stable content and `dev` for integration.
 All normal source integrations use the repository-local `/merge` policy.
