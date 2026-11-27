@@ -27,6 +27,12 @@ repositories:
     branch: dev
 ~~~
 
+On first bootstrap the CAD repository is cloned as the configured development
+branch only, with a blobless partial clone. This keeps generated or historical
+large blobs from unrelated refs out of the initial workspace download. Once the
+checkout exists, workspace maintenance only validates its origin and never
+changes its branch or worktree state.
+
 After that, stop using this document for normal setup and follow:
 
 1. docs/manual/01-installation.md
