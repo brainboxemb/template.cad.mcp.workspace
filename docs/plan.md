@@ -14,7 +14,7 @@ it does not own Forge, MCP, vcs2l, CAD model or SolidCraft product behavior.
 - normal source integration uses the repository-local `/merge` policy;
 - MCP and Forge are exact immutable release tags in `dependencies.repos`,
   materialized with vcs2l below `ext/`;
-- the current released compatibility baseline is Forge CAD MCP 0.0.4 with
+- the current released compatibility baseline is Forge CAD MCP 0.0.5 with
   Forge/SCPF 0.25.0 and SolidCraft 0.50.0 / CAD runtime v0.3.8, including
   authenticated live SolidCraft workbench control;
 - the active target is selected locally and is either one exact
@@ -68,7 +68,7 @@ State:
 - current status: template bootstrap, CI/governance, vcs2l external dependency
   handling and the single `cad-mcp-workspace` Conda model are implemented and
   green on permanent `dev`;
-- next concrete gate: update the concrete workspace to MCP v0.0.4, create a
+- next concrete gate: update the concrete workspace to MCP v0.0.5, create a
   local standalone workbench and run the documented 60 × 20 × 4 mm / Ø8 live
   SolidCraft demo before involving the CAD catalog;
 - blocker/external work: the concrete Windows run has not yet been completed.
@@ -77,7 +77,8 @@ State:
 
 | Issue | Lane/owner | Status | Next action |
 | --- | --- | --- | --- |
-| #65 | template `dev` | now | Generate project-local Codex MCP config for standalone workbenches |
+| #68 | template `dev` | now | Adopt released MCP v0.0.5 fast-status patch for Windows Codex acceptance |
+| #65 | template `dev` | complete | Project-local Codex MCP config published to stable main |
 | #62 | template `dev` | complete | Shallow exact-tag MCP/Forge externals published and proven on Windows |
 | #59 | template `dev` | complete | MCP v0.0.4 / SolidCraft 0.50.0 baseline published to stable main |
 | #53 | template `dev` | later | Keep no-target/workbench bootstrap independent from the CAD catalog checkout |
@@ -85,6 +86,8 @@ State:
 
 ## Recently completed
 
+- #65 generates project-local `.codex/config.toml` for standalone workbenches,
+  so Codex IDE can discover `forgeCad` without a separate global Codex CLI.
 - #62 replaced full-history MCP/Forge externals with shallow exact-tag
   checkouts; the concrete Windows Forge external dropped from about 192 MB to
   about 8 MB.
