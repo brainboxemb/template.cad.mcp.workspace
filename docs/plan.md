@@ -55,40 +55,31 @@ Shared cross-repository principles live in
 
 ## Active workstreams
 
-### WS1 — vcs2l external dependency alignment
-
-State:
-
-- owner/lane: template `dev`;
-- current status: issue #9 replaces duplicated MCP/Forge Git management with
-  `dependencies.repos` + vcs2l under `ext/`;
-- next concrete gate: merge the vcs2l implementation to `dev`, verify
-  permanent CI, then include it in the first concrete Windows workspace test;
-- blocker/external work: shared vcs2l availability is owned by
-  `brainboxemb/tool.py-dev-env`.
-
-### WS2 — first concrete workspace acceptance
+### WS1 — first concrete workspace acceptance
 
 State:
 
 - owner/lane: template `dev` plus concrete
   `workspace.cad.mcp.models` consumer;
-- current status: template bootstrap, CI and governance exist; the external
-  dependency implementation is being corrected by #9 before acceptance;
+- current status: template bootstrap, CI/governance and vcs2l external
+  dependency handling are implemented on `dev`;
 - next concrete gate: configure the real CAD catalog, then run Windows vcs2l
   import + bootstrap + doctor and one real VS Code MCP environment/skill call;
-- blocker/external work: wait for #9 to land before treating the first consumer
-  run as representative.
+- blocker/external work: shared vcs2l availability is provided by
+  `brainboxemb/tool.py-dev-env`; the concrete Windows run has not yet been
+  completed.
 
 ## Open issue assignment
 
 | Issue | Lane/owner | Status | Next action |
 | --- | --- | --- | --- |
-| #9 | dev / dependency handling | now | Replace custom MCP/Forge Git management with `dependencies.repos` + vcs2l |
-| #1 | concrete workspace acceptance | next | Exercise `workspace.cad.mcp.models` on Windows after #9 |
+| #1 | concrete workspace acceptance | now | Exercise `workspace.cad.mcp.models` on Windows with vcs2l, bootstrap, doctor and a real MCP call |
 
 ## Recently completed
 
+- #9 replaced duplicated MCP/Forge Git checkout logic with the existing vcs2l
+  dependency engine: exact revisions now live only in `dependencies.repos`
+  and materialize below `ext/`; the active CAD worktree remains separate.
 - #5 aligned `docs/handoff.md` and `docs/plan.md` with the shared structures
   in `brainboxemb/meta.cad.solidcraft`; the handoff now contains only durable
   session-entry guidance and current state remains in this plan.
