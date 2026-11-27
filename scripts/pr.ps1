@@ -11,6 +11,7 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
+$BodySpecified = $PSBoundParameters.ContainsKey("Body")
 
 function Invoke-Git {
     param([string[]]$Arguments)
@@ -94,7 +95,7 @@ function Open-Pr {
     }
 
     $PrBody = $Body
-    if (-not $PSBoundParameters.ContainsKey("Body") -and $Branch -match "^issue/(\d+)(?:-|$)") {
+    if (-not $BodySpecified -and $Branch -match "^issue/(\d+)(?:-|$)") {
         $PrBody = "Closes #$($Matches[1])."
     }
     if ($null -eq $PrBody) {
