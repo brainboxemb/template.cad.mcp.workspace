@@ -406,7 +406,7 @@ def test_toolchain_dependencies_use_qualified_release_tags():
         )
     )["repositories"]
 
-    assert dependencies["mcp"]["version"] == "v0.0.2"
+    assert dependencies["mcp"]["version"] == "v0.0.3"
     assert dependencies["forge"]["version"] == "v0.25.0"
     assert all(
         item["version"].startswith("v")
