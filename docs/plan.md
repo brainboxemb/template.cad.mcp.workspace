@@ -44,6 +44,8 @@ The workspace exists to make the assistant loop predictable and cheap:
 
 - external Git dependency materialization must reuse vcs2l rather than duplicate
   generic clone/fetch/checkout logic;
+- exact MCP/Forge release externals must be shallow tagged checkouts; full Git
+  history is not part of the workspace toolchain contract;
 - the workspace uses one dedicated `cad-mcp-workspace` Conda environment for
   both vcs2l and the MCP/runtime dependencies;
 - toolchain release tags are explicit rather than floating;
@@ -75,7 +77,8 @@ State:
 
 | Issue | Lane/owner | Status | Next action |
 | --- | --- | --- | --- |
-| #59 | template `dev` | now | Adopt MCP v0.0.4 / SolidCraft 0.50.0 release pins before Windows acceptance |
+| #62 | template `dev` | now | Replace full-history MCP/Forge externals with shallow exact-tag checkouts |
+| #59 | template `dev` | complete | MCP v0.0.4 / SolidCraft 0.50.0 baseline published to stable main |
 | #53 | template `dev` | later | Keep no-target/workbench bootstrap independent from the CAD catalog checkout |
 | #1 | concrete workspace acceptance | next | Run the 60 × 20 × 4 mm / Ø8 live workbench demo after the MCP/template update |
 
