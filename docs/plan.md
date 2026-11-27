@@ -55,17 +55,6 @@ Shared cross-repository principles live in
 
 ## Active workstreams
 
-### WS0 — procedural manuals
-
-State:
-
-- owner/lane: template `dev`;
-- current status: issue #17 rewrites the developer and daily manuals as
-  executable procedures rather than architecture/reference blocks;
-- next concrete gate: merge the documentation rewrite and synchronize the
-  shared manual to the concrete models workspace;
-- blocker/external work: none.
-
 ### WS1 — first concrete workspace acceptance
 
 State:
@@ -83,11 +72,14 @@ State:
 
 | Issue | Lane/owner | Status | Next action |
 | --- | --- | --- | --- |
-| #17 | dev / documentation | now | Merge procedural developer/daily manuals and synchronize the consumer |
-| #1 | concrete workspace acceptance | next | Exercise `workspace.cad.mcp.models` on Windows with vcs2l, bootstrap, doctor and a real MCP call |
+| #1 | concrete workspace acceptance | now | Exercise `workspace.cad.mcp.models` on Windows with vcs2l, bootstrap, doctor and a real MCP call |
 
 ## Recently completed
 
+- #17 rewrote `docs/developer-manual.md` and `docs/manual.md` as ordered,
+  executable procedures. The Conda environment creation/update now appears at
+  the bootstrap step where it actually happens, instead of as detached
+  architecture/reference text.
 - #13 simplified bootstrap/runtime to one dedicated `cad-mcp-workspace` Conda
   environment containing both vcs2l and the Forge MCP/runtime dependencies; no
   normal environment switching is required.
