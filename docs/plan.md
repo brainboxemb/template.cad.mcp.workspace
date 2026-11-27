@@ -72,11 +72,13 @@ State:
 
 | Issue | Lane/owner | Status | Next action |
 | --- | --- | --- | --- |
-| #41 | template `dev` | now | Fix Windows vcs2l delete input so external rematerialization cannot block on stdin |
-| #1 | concrete workspace acceptance | next | Retry the concrete Windows update, then doctor and a real MCP call |
+| #1 | concrete workspace acceptance | now | Retry the concrete Windows update, then doctor and a real MCP call |
 
 ## Recently completed
 
+- #41 fixed the Windows external-rematerialization hang by passing
+  `dependencies.repos` to `vcs delete` with `--input` instead of through
+  inherited stdin.
 - #38 fixed the generated Python metadata false-positive found by the first
   real Windows external-reconciliation run; that retry then exposed #41,
   where `vcs delete` was still reading its manifest through inherited stdin.
