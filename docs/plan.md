@@ -14,7 +14,7 @@ it does not own Forge, MCP, vcs2l, CAD model or SolidCraft product behavior.
 - normal source integration uses the repository-local `/merge` policy;
 - MCP and Forge are exact immutable release tags in `dependencies.repos`,
   materialized with vcs2l below `ext/`;
-- the current released compatibility baseline is Forge CAD MCP 0.0.7 with
+- the current released compatibility baseline is Forge CAD MCP 0.0.8 with
   Forge/SCPF 0.25.0 and SolidCraft 0.50.0 / CAD runtime v0.3.8, including
   authenticated live SolidCraft workbench control;
 - the active target is selected locally and is either one exact
@@ -65,8 +65,8 @@ State:
 
 - owner/lane: template `dev` plus concrete
   `workspace.cad.mcp.models` consumer;
-- current status: the standalone Codex MCP boundary/router and MCP v0.0.7
-  new-model skill are published on stable `main`;
+- current status: the standalone Codex MCP boundary/router and MCP v0.0.8
+  `forge-modeling` contract/generic-idiom correction are published on stable `main`;
 - next concrete gate: update the real Windows consumer and resume the documented
   60 × 20 × 4 mm / Ø8 live SolidCraft demo before involving the CAD catalog;
 - blocker/external work: the live GUI acceptance is the remaining checkpoint.
@@ -75,6 +75,7 @@ State:
 
 | Issue | Lane/owner | Status | Next action |
 | --- | --- | --- | --- |
+| #87 | template `main` | complete | MCP v0.0.8 authoring-contract/Hole-semantics patch adopted |
 | #79 | template `main` | complete | MCP v0.0.7 new-model skill published to stable main |
 | #77 | template `dev` | complete | Standalone Codex workbench routes tasks through the three Forge CAD MCP skills |
 | #74 | template `dev` | complete | Standalone Codex boundary policy generated locally in each workbench |
@@ -84,10 +85,11 @@ State:
 | #62 | template `dev` | complete | Shallow exact-tag MCP/Forge externals published and proven on Windows |
 | #59 | template `dev` | complete | MCP v0.0.4 / SolidCraft 0.50.0 baseline published to stable main |
 | #53 | template `dev` | later | Keep no-target/workbench bootstrap independent from the CAD catalog checkout |
-| #1 | concrete workspace acceptance | now | Resume the 60 × 20 × 4 mm / Ø8 live workbench demo against stable MCP v0.0.7 |
+| #1 | concrete workspace acceptance | now | Resume the 60 × 20 × 4 mm / Ø8 live workbench demo against stable MCP v0.0.8 |
 
 ## Recently completed
 
+- #87 adopts MCP `v0.0.8`: `forge-modeling` keeps the minimal `scpf/model.py` contract, adds only generic Forge idioms, and fixes native `Hole` composition to use `+`.
 - #79 published MCP `v0.0.7`, whose `forge-modeling` skill now teaches and CI-compiles the minimal `scpf/model.py` contract.
 - #77 made the generated `AGENTS.md` a short task-to-skill router for `forge-modeling`, `solidcraft-control` and `solidcraft-to-forge`.
 - #74 added a generated local `AGENTS.md` boundary for standalone workbenches, preventing implicit shell/toolchain and GitHub/web fallbacks during CAD authoring.
