@@ -55,20 +55,7 @@ Shared cross-repository principles live in
 
 ## Active workstreams
 
-### WS1 — workflow manuals and owner/reference operations
-
-State:
-
-- owner/lane: template `dev`;
-- current status: issue #21 splits the user manual into installation, new-model,
-  SolidCraft-to-Forge and existing-model procedures and adds operator-side
-  create-model/reference-import helpers;
-- next concrete gate: pass template CI, synchronize the accepted workflow to
-  `workspace.cad.mcp.models`, then execute the three model workflows in order;
-- blocker/external work: CAD catalog #248 must ignore owner-local `build/`
-  scratch before the runtime acceptance.
-
-### WS2 — first concrete workspace acceptance
+### WS1 — first concrete workspace acceptance
 
 State:
 
@@ -85,11 +72,13 @@ State:
 
 | Issue | Lane/owner | Status | Next action |
 | --- | --- | --- | --- |
-| #21 | dev / workspace workflow | now | Merge workflow manuals and operator helpers, then synchronize consumer |
-| #1 | concrete workspace acceptance | next | Exercise `workspace.cad.mcp.models` on Windows with vcs2l, bootstrap, doctor and a real MCP call |
+| #1 | concrete workspace acceptance | now | Exercise `workspace.cad.mcp.models` on Windows with vcs2l, bootstrap, doctor and a real MCP call |
 
 ## Recently completed
 
+- #21 split the user workflow into basic installation, new-model,
+  SolidCraft-to-Forge and existing-model procedures; added explicit owner
+  creation, immutable native-reference import and target-optional installation.
 - #17 rewrote `docs/developer-manual.md` and `docs/manual.md` as ordered,
   executable procedures. The Conda environment creation/update now appears at
   the bootstrap step where it actually happens, instead of as detached
