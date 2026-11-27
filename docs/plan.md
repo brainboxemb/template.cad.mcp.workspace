@@ -76,6 +76,10 @@ State:
 
 ## Recently completed
 
+- #17 rewrote `docs/developer-manual.md` and `docs/manual.md` as ordered,
+  executable procedures. The Conda environment creation/update now appears at
+  the bootstrap step where it actually happens, instead of as detached
+  architecture/reference text.
 - #13 simplified bootstrap/runtime to one dedicated `cad-mcp-workspace` Conda
   environment containing both vcs2l and the Forge MCP/runtime dependencies; no
   normal environment switching is required.
