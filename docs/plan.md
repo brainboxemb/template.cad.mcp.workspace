@@ -14,8 +14,9 @@ it does not own Forge, MCP, vcs2l, CAD model or SolidCraft product behavior.
 - normal source integration uses the repository-local `/merge` policy;
 - MCP and Forge are exact immutable release tags in `dependencies.repos`,
   materialized with vcs2l below `ext/`;
-- the current compatibility baseline is Forge CAD MCP 0.0.2 with Forge/SCPF
-  0.25.0 and SolidCraft 0.49.0;
+- the current released compatibility baseline is Forge CAD MCP 0.0.2 with
+  Forge/SCPF 0.25.0 and SolidCraft 0.49.0; the next MCP release will add live
+  SolidCraft workbench control before this template updates its pin;
 - the active target is selected locally and is either one exact
   `models/.../<owner>` catalog owner or one ignored standalone workbench;
 - an existing CAD checkout is validated but never reset, cleaned, pulled or
@@ -74,11 +75,13 @@ State:
 
 | Issue | Lane/owner | Status | Next action |
 | --- | --- | --- | --- |
-| #47 | template `dev` | now | Add the standalone local workbench workflow and synchronize it to the concrete workspace |
-| #1 | concrete workspace acceptance | next | Use a local workbench for doctor and the first real MCP authoring cycle |
+| #50 | template `dev` | now | Add workbench project configuration, live SolidCraft demo procedure and adopt the next MCP release once published |
+| #1 | concrete workspace acceptance | next | Run the 60 × 20 × 4 mm / Ø8 live workbench demo after the MCP/template update |
 
 ## Recently completed
 
+- #47 added the lightweight standalone workbench target using MCP
+  `--workspace`; it creates no catalog metadata, CI file or CAD branch.
 - #41 fixed the Windows external-rematerialization hang by passing
   `dependencies.repos` to `vcs delete` with `--input` instead of through
   inherited stdin.
@@ -121,8 +124,9 @@ The next acceptance checkpoint is a real
 `workspace.cad.mcp.models` consumer on Windows:
 
 1. complete basic installation without selecting a target;
-2. create a local standalone workbench and prove the MCP authoring -> compile
-   -> SolidCraft replay/check cycle without a CAD branch or PR;
+2. create a local standalone workbench with `project.yml` and prove the MCP
+   authoring -> live SolidCraft apply/inspect/mutate/view/render cycle using the
+   60 × 20 × 4 mm plate with one centered Ø8 mm hole;
 3. create and verify one maintained Forge catalog model;
 4. convert one independently authored SolidCraft .sc reference to Forge;
 5. continue one existing Forge model from Git;
