@@ -27,6 +27,12 @@ repositories:
     branch: dev
 ~~~
 
+On first bootstrap the CAD repository is cloned as the configured development
+branch only, with a blobless partial clone. This keeps generated or historical
+large blobs from unrelated refs out of the initial workspace download. Once the
+checkout exists, workspace maintenance only validates its origin and never
+changes its branch or worktree state.
+
 After that, stop using this document for normal setup and follow:
 
 1. docs/manual/01-installation.md
@@ -51,6 +57,44 @@ Do not silently advance MCP/Forge revisions while synchronizing unrelated change
 
 ## Source integration
 
-Normal template work uses a short-lived branch from dev, then /merge to dev. Accepted dev checkpoints go to main through a dev-to-main PR and /merge.
+Normal template work uses a short-lived branch from dev, then /merge to dev.
+Accepted dev checkpoints go to main through a dev-to-main PR and /merge.
+
+For local operator use, install GitHub CLI once and authenticate it:
+
+~~~powershell
+gh --version
+gh auth status
+~~~
+
+If `gh` is missing, install GitHub CLI and run `gh auth login`.
+
+The workspace helper can publish the current repository branch:
+
+~~~powershell
+.\scripts\pr.ps1 publish -Title "Describe the change"
+~~~
+
+For the active CAD worktree, point the same helper at that repository:
+
+~~~powershell
+.\scripts\pr.ps1 publish -Path .repos\cad -Title "Describe the model change"
+~~~
+
+`publish` pushes the branch, opens the PR, waits for PR checks and then posts
+`/merge`. It never calls GitHub's merge endpoint directly. The repository
+merge-policy workflow remains authoritative for the allowed branch integration
+and merge method.
+
+The actions can also be separated:
+
+~~~powershell
+.\scripts\pr.ps1 open -Title "Describe the change"
+.\scripts\pr.ps1 merge
+~~~
+
+The normal base is inferred as short-lived branch -> `dev` and `dev` ->
+`main`. Use `-Base` only for an intentional exceptional lane such as the
+allowed stable `main` -> `dev` sync.
 
 Keep docs/plan.md as the source of truth for unfinished template work.
