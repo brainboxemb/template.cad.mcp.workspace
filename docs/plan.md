@@ -76,6 +76,9 @@ State:
 
 ## Recently completed
 
+- #21 split the user workflow into basic installation, new-model,
+  SolidCraft-to-Forge and existing-model procedures; added explicit owner
+  creation, immutable native-reference import and target-optional installation.
 - #17 rewrote `docs/developer-manual.md` and `docs/manual.md` as ordered,
   executable procedures. The Conda environment creation/update now appears at
   the bootstrap step where it actually happens, instead of as detached
@@ -99,11 +102,11 @@ State:
 The next acceptance checkpoint is a real
 `workspace.cad.mcp.models` consumer on Windows:
 
-1. materialize MCP/Forge with vcs2l from `dependencies.repos`;
-2. configure the active CAD catalog;
-3. run `bootstrap.ps1` and `doctor.ps1`;
-4. open the generated VS Code workspace;
-5. complete an actual Forge MCP `environment` call and skill lookup.
+1. complete basic installation without selecting a target;
+2. create and verify one new Forge model;
+3. convert one independently authored SolidCraft .sc reference to Forge;
+4. continue one existing Forge model from Git;
+5. prove owner-local build scratch stays out of Git in all three workflows.
 
 Only after that succeeds should #1 close and the template be treated as proven
 outside repository CI.
