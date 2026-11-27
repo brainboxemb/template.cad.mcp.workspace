@@ -49,6 +49,11 @@ def local_config(*, required: bool = False) -> dict:
     return _yaml(LOCAL_PATH, required=required)
 
 
+def has_target(local: dict) -> bool:
+    target = local.get("target")
+    return isinstance(target, dict) and bool(target.get("model"))
+
+
 def _path(value: str) -> Path:
     return (ROOT / value).resolve()
 
@@ -411,15 +416,15 @@ def bootstrap() -> None:
     ensure_cad(data, paths["cad"])
     install_toolchain(paths)
     local = local_config(required=False)
-    if local:
+    if has_target(local):
         state = generate(data, local)
         print(json.dumps({"ready_for_doctor": True, **state}, indent=2))
     else:
         print(json.dumps({
             "ready_for_doctor": False,
             "message": (
-                "Toolchain installed. Create workspace.local.yml or run "
-                "select-model.ps1, then run doctor.ps1."
+                "Toolchain installed. No model target is selected yet; run "
+                "create-model.ps1 or select-model.ps1, then run doctor.ps1."
             ),
         }, indent=2))
 
@@ -437,7 +442,7 @@ def update() -> None:
         require_repo(paths["cad"], url)
     install_toolchain(paths)
     local = local_config(required=False)
-    if local:
+    if has_target(local):
         print(json.dumps(generate(data, local), indent=2))
     else:
         print("toolchain updated; no local target selected")
