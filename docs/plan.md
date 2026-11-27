@@ -72,11 +72,14 @@ State:
 
 | Issue | Lane/owner | Status | Next action |
 | --- | --- | --- | --- |
-| #38 | template `dev` | now | Fix generated Python metadata false-positive from the first real Windows update |
+| #41 | template `dev` | now | Fix Windows vcs2l delete input so external rematerialization cannot block on stdin |
 | #1 | concrete workspace acceptance | next | Retry the concrete Windows update, then doctor and a real MCP call |
 
 ## Recently completed
 
+- #38 fixed the generated Python metadata false-positive found by the first
+  real Windows external-reconciliation run; that retry then exposed #41,
+  where `vcs delete` was still reading its manifest through inherited stdin.
 - #35 added automatic vcs2l external reconciliation for bootstrap/update; the
   first real Windows run then exposed #38 because generated Python package
   metadata was being mistaken for user edits.
