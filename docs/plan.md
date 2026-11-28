@@ -78,14 +78,16 @@ State:
 #93 / PRs #94 and #95 integrated the developer manual and local test/branch/
 commit/PR workflow on template main. Linux CI passed all 43 tests, including
 PowerShell script smoke tests. Consumer #73 tracks exact reviewed adoption
-from template stable ad357d3fd686f88a5f88621dcd59435889352703; PR #74 is
-open. Real Windows local operator acceptance remains open.
+from template stable ad357d3fd686f88a5f88621dcd59435889352703; consumer
+PRs #74/#75 are green and merged to dev/main respectively. Real Windows
+local operator acceptance remains open. Follow consumer #73 for its current
+acceptance state.
 
 ## Open issue assignment
 
 | Issue | Lane/owner | Status | Next action |
 | --- | --- | --- | --- |
-| #93 | template | Windows acceptance | Local developer workflow integrated; verify consumer adoption and operator scripts |
+| #93 | template | Windows acceptance | Local developer workflow integrated; verify operator scripts on Windows after completed consumer adoption |
 | #87 | template `main` | complete | MCP v0.0.8 authoring-contract/Hole-semantics patch adopted |
 | #79 | template `main` | complete | MCP v0.0.7 new-model skill published to stable main |
 | #77 | template `dev` | complete | Standalone Codex workbench routes tasks through the three Forge CAD MCP skills |
