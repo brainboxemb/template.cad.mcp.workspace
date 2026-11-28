@@ -65,17 +65,27 @@ State:
 
 - owner/lane: template `dev` plus concrete
   `workspace.cad.mcp.models` consumer;
-- current status: MCP v0.0.9 is the released Windows stdio-compile fix and is
-  being adopted by the template/concrete workspace before the live demo resumes;
-- next concrete gate: update the real Windows consumer and resume the documented
-  60 × 20 × 4 mm / Ø8 live SolidCraft demo before involving the CAD catalog;
-- blocker/external work: the live GUI acceptance is the remaining checkpoint.
+- current status: MCP v0.0.9 is adopted by both stable repositories; on
+  2026-11-28 the operator confirmed standalone live apply, inspection,
+  parameter mutation, view/render and evidence;
+- execution acceptance is complete; independent authoring remains open because
+  the test geometry was included in the old skill;
+- MCP #113 is held on Forge #639 (Forge-owned agent knowledge). Continue
+  independent authoring, then catalog creation/conversion/existing-model gates.
+
+### WS2 — local development and consumer adoption
+
+#93 / PRs #94 and #95 integrated the developer manual and local test/branch/
+commit/PR workflow on template main. Linux CI passed all 43 tests, including
+PowerShell script smoke tests. Consumer #73 tracks exact reviewed adoption
+from template stable ad357d3fd686f88a5f88621dcd59435889352703; PR #74 is
+open. Real Windows local operator acceptance remains open.
 
 ## Open issue assignment
 
 | Issue | Lane/owner | Status | Next action |
 | --- | --- | --- | --- |
-| #90 | template `dev` | active | Adopt MCP v0.0.9 stdio compile fix and publish it to stable main |
+| #93 | template | Windows acceptance | Local developer workflow integrated; verify consumer adoption and operator scripts |
 | #87 | template `main` | complete | MCP v0.0.8 authoring-contract/Hole-semantics patch adopted |
 | #79 | template `main` | complete | MCP v0.0.7 new-model skill published to stable main |
 | #77 | template `dev` | complete | Standalone Codex workbench routes tasks through the three Forge CAD MCP skills |
@@ -86,7 +96,7 @@ State:
 | #62 | template `dev` | complete | Shallow exact-tag MCP/Forge externals published and proven on Windows |
 | #59 | template `dev` | complete | MCP v0.0.4 / SolidCraft 0.50.0 baseline published to stable main |
 | #53 | template `dev` | later | Keep no-target/workbench bootstrap independent from the CAD catalog checkout |
-| #1 | concrete workspace acceptance | now | Resume the 60 × 20 × 4 mm / Ø8 live workbench demo against stable MCP v0.0.9 |
+| #1 | concrete workspace acceptance | held on MCP/Forge knowledge | Independent authoring, catalog creation, conversion and continuation |
 
 ## Recently completed
 
@@ -143,13 +153,13 @@ State:
 
 ## Next release/checkpoint
 
+First verify the new local developer scripts on Windows after consumer adoption.
+
 The next acceptance checkpoint is a real
 `workspace.cad.mcp.models` consumer on Windows:
 
-1. complete basic installation without selecting a target;
-2. create a local standalone workbench with `project.yml` and prove the MCP
-   authoring -> live SolidCraft apply/inspect/mutate/view/render cycle using the
-   60 × 20 × 4 mm plate with one centered Ø8 mm hole;
+1. retain the completed basic installation and standalone live execution evidence;
+2. prove independent agent authoring after the released Forge knowledge improvement;
 3. create and verify one maintained Forge catalog model;
 4. convert one independently authored SolidCraft .sc reference to Forge;
 5. continue one existing Forge model from Git;
